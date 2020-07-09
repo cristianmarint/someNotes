@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de tareas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <a th:href="@{/tareas/add}" class="btn btn-primary">Nueva tarea</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Titulo</td>
+            <td>Contenido</td>
+            <td>Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tarea:${tareas}">
+            <td th:text="${tarea.id}"></td>
+            <td th:text="${tarea.titulo}"></td>
+            <td th:text="${tarea.texto}"></td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/tareas/edit/}+${tarea.id}">Editar</a>
+                <a class="btn btn-danger"  th:onclick="eliminar([[${tarea.id}]])" href="#">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/js/funciones.js"></script>
+
+
+</body>
+</html>

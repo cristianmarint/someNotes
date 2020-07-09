@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Tarea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <div class="col-sm-6">
+        <div class="card">
+            <form th:action="@{/tareas/save}" th:object=${tarea} method="post">
+                <div class="card-header">
+                    Modulo Tarea
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" th:field="*{id}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Titulo</label>
+                            <label>
+                                <input type="text" class="form-control" th:field="*{titulo}"/>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Contenido</label>
+                            <input type="text" class="form-control" th:field="*{texto}"/>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" value="Guardar" class="btn btn-success"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
