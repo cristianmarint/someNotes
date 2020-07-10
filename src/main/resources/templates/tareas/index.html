@@ -1,45 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de tareas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Tareas</title>
 </head>
 <body>
 
-<div class="container mt-4">
-
-    <a th:href="@{/tareas/add}" class="btn btn-primary">Nueva tarea</a>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Titulo</td>
-            <td>Contenido</td>
-            <td>Acciones</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tarea:${tareas}">
-            <td th:text="${tarea.id}"></td>
-            <td th:text="${tarea.titulo}"></td>
-            <td th:text="${tarea.texto}"></td>
-            <td>
-                <a class="btn btn-warning" th:href="@{/tareas/edit/}+${tarea.id}">Editar</a>
-                <a class="btn btn-danger"  th:onclick="eliminar([[${tarea.id}]])" href="#">delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div layout:fragment="contenido">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center" style="font-size: 3rem;">
+                    <a th:href="@{/tareas/add}">
+                        <i class="icon ion-plus-round"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div th:each="tarea:${tareas}" class="col-md-4" >
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <a th:href="@{/tareas/edit/}+${tarea.id}" class="card-link"  style="color: rgb(0,0,0);">
+                                <h4 th:text="${tarea.titulo}" style="font-size: 2rem;font-weight: bold;font-family: Montserrat, sans-serif;"></h4>
+                            </a>
+                            <h6 th:text="${tarea.id}" class="text-muted card-subtitle mb-2"></h6>
+                            <p  th:text="${tarea.texto}" class="card-text"></p>
+                            <a  th:href="@{/tareas/edit/}+${tarea.id}" class="card-link btn btn-primary" >Editar</a>
+                            <a  th:onclick="eliminar([[${tarea.id}]])" href="#" class="card-link btn btn-link" >Borrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/js/funciones.js"></script>
-
 
 </body>
 </html>

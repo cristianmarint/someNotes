@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Detalle de Tarea</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Tarea</title>
 </head>
 <body>
 
-<div class="container mt-4">
-
-    <div class="col-sm-6">
-        <div class="card">
+<div layout:fragment="contenido" class="container">
+    <div class="row">
+        <div class="col-md-12 text-center" style="font-size: 3rem;">
             <form th:action="@{/tareas/save}" th:object=${tarea} method="post">
-                <div class="card-header">
-                    Modulo Tarea
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" th:field="*{id}"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Titulo</label>
-                            <label>
-                                <input type="text" class="form-control" th:field="*{titulo}"/>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>Contenido</label>
-                            <input type="text" class="form-control" th:field="*{texto}"/>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <input type="submit" value="Guardar" class="btn btn-success"/>
-                    </div>
-                </div>
+                <input class="form-control" type="text" placeholder="id" th:field="*{id}">
+                <input class="form-control" type="text" placeholder="Titulo" th:field="*{titulo}">
+                <input class="form-control" type="text" placeholder="Descripción" th:field="*{texto}">
+                <input type="submit" value="Guardar" class="btn btn-success"/>
             </form>
         </div>
     </div>
-
 </div>
 
 </body>

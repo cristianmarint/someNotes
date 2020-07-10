@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html style="font-family: Montserrat, sans-serif;">
-
+<html xmlns:th="http://www.thymeleaf.org" style="font-family: Montserrat, sans-serif;">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>SomeNotes</title>
+    <title>SomeNotes | Tarea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
     <meta name="description" content="Fast note taking app">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
@@ -30,9 +31,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center" style="font-size: 3rem;">
-                    <form>
-                        <input class="form-control" type="text" placeholder="Titulo">
-                        <input class="form-control" type="text" placeholder="Descripción">
+                    <form th:action="@{/tareas/save}" th:object=${tarea} method="post">
+                        <input class="form-control" type="text" placeholder="Titulo" th:field="*{id}">
+                        <input class="form-control" type="text" placeholder="Descripción" th:field="*{texto}">
                         <button class="btn btn-primary" type="button">guardar</button>
                     </form>
                 </div>
