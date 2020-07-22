@@ -3,22 +3,22 @@ package com.some.notes.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tarea")
-public class Tareas {
+@Table(name="nota")
+public class Notas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int user_id;
     private String titulo;
-    private String texto;
+    private String descripcion;
 
-    public Tareas(){}
+    public Notas(){}
 
-    public Tareas(int id, int user_id, String titulo, String texto) {
+    public Notas(int id, int user_id, String titulo, String descripcion) {
         this.id = id;
         this.user_id = user_id;
         this.titulo = titulo;
-        this.texto = texto;
+        this.descripcion = descripcion;
     }
 
     public int getId() {
@@ -45,11 +45,11 @@ public class Tareas {
         this.titulo = titulo;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
