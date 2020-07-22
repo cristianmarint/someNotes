@@ -1,7 +1,7 @@
 package com.some.notes.controller;
 
-import com.some.notes.interfacesService.ITareaService;
-import com.some.notes.model.Tareas;
+import com.some.notes.interfacesService.INotaService;
+import com.some.notes.model.Notas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,40 +17,39 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping
-public class TareaController {
+public class NotaController {
 
-    @Qualifier("tareaService")
+    @Qualifier("notaService")
     @Autowired
-    private ITareaService service;
+    private INotaService service;
 
-    @GetMapping("/tareas")
+    @GetMapping("/notas")
     public String index(final Model model){
-        final List<Tareas> tareas = service.listar();
-        model.addAttribute("tareas",tareas);
-        return "tareas/index";
+        final List<Notas> notas = service.listar();
+        model.addAttribute("notas",notas);
+        return "notas/index";
     }
 
+    @PostMapping("/notas/save")
+    public String save(@Validated Notas n, Model model){
+        service.save(n);
+        return "redirect:/notas";
+    }
 
-    @GetMapping("/tareas/add")
+    @GetMapping("/notas/add")
     public String add(Model model){
-        model.addAttribute("tarea", new Tareas());
-        return "tareas/form";
+        model.addAttribute("nota", new Notas());
+        return "notas/form";
     }
 
-    @PostMapping("tareas/save")
-    public String save(@Validated Tareas t, Model model){
-        service.save(t);
-        return "redirect:/tareas";
-    }
-
-    @GetMapping("/tareas/edit/{id}")
+    @GetMapping("/notas/edit/{id}")
     public String edit(@PathVariable int id, Model model){
-        Optional<Tareas> tarea = service.listarId(id);
-        model.addAttribute("tarea",tarea);
-        return "tareas/form";
+        Optional<Notas> nota = service.listarId(id);
+        model.addAttribute("nota",nota);
+        return "notas/form";
     }
 
-    @GetMapping("/tareas/delete/{id}")
+    @GetMapping("/notas/delete/id")
     public String delete(Model model, @PathVariable int id){
         service.delete(id);
         return "redirect:/tareas";
