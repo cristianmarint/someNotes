@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Notas</title>
+</head>
+<body>
+
+<div layout:fragment="contenido">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center" style="font-size: 3rem;">
+                    <a th:href="@{/notas/add}">
+                        <i class="icon ion-plus-round"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div th:each="nota:${notas}" class="col-md-4" >
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <a th:href="@{/notas/edit/}+${nota.id}" class="card-link"  style="color: rgb(0,0,0);">
+                                <h4 th:text="${nota.titulo}" style="font-size: 2rem;font-weight: bold;font-family: Montserrat, sans-serif;"></h4>
+                            </a>
+                            <h6 th:text="${nota.id}" class="text-muted card-subtitle mb-2"></h6>
+                            <p  th:text="${nota.descripcion}" class="card-text"></p>
+                            <a  th:href="@{/nota/edit/}+${nota.id}" class="card-link btn btn-primary" >Editar</a>
+                            <a  th:onclick="eliminar([[${nota.id}]])" href="#" class="card-link btn btn-link" >Borrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Nota</title>
+</head>
+<body>
+
+<div layout:fragment="contenido" class="container">
+    <div class="row">
+        <div class="col-md-12 text-center" style="font-size: 3rem;">
+            <form th:action="@{/notas/save}" th:object=${nota} method="post">
+                <input class="form-control" type="text" placeholder="id" th:field="*{id}">
+                <input class="form-control" type="text" placeholder="Titulo" th:field="*{titulo}">
+                <input class="form-control" type="text" placeholder="Descripción" th:field="*{descripcion}">
+                <input type="submit" value="Guardar" class="btn btn-success"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
